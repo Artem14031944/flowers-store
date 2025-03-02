@@ -1,6 +1,6 @@
 import { IsNumber, IsString } from 'class-validator';
 
-export class FlowerCreateDto {
+export class CreateFlowersDto {
   @IsString({
     message: 'Имя не строка',
   })
@@ -10,5 +10,7 @@ export class FlowerCreateDto {
   color: string;
 
   @IsNumber()
-  price: string;
+  price: number;
 }
+
+export type TCreateFlowersDto = Partial<CreateFlowersDto>;

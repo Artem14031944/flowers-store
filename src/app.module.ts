@@ -1,11 +1,28 @@
 import { Module } from '@nestjs/common';
-
 import { FlowersModule } from './flowers/flowers.module';
-import { UsersModule } from './users/users.module';
+import { ConfigModule } from '@nestjs/config';
+import { MicroserviceModule } from './microservice/microservice.module';
+import { AppService } from './app.service';
+import { AppController } from './app.controller';
+import { ClientsModule, Transport } from '@nestjs/microservices';
 
 @Module({
-  imports: [FlowersModule, UsersModule],
-  controllers: [],
-  providers: [],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    FlowersModule,
+    MicroserviceModule,
+    ClientsModule.register([
+      {
+        name: 'ORDER_SERVICE',
+        transport: Transport.TCP,
+        options: {
+          host: 'localhost',
+          port: 8877,
+        },
+      },
+    ]),
+  ],
+  providers: [AppService],
+  controllers: [AppController],
 })
 export class AppModule {}
