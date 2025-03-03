@@ -9,6 +9,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { FlowersGrapghqlModule } from './flowers-grapghql/flowers-grapghql.module';
+import { WebSocketGateWay } from './websocket.gateway';
 
 @Module({
   imports: [
@@ -32,7 +33,7 @@ import { FlowersGrapghqlModule } from './flowers-grapghql/flowers-grapghql.modul
     }),
     FlowersGrapghqlModule,
   ],
-  providers: [AppService],
+  providers: [AppService, WebSocketGateWay],
   controllers: [AppController],
 })
 export class AppModule {}
