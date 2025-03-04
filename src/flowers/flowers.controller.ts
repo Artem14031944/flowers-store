@@ -9,7 +9,7 @@ import {
 import { FlowersService } from './flowers.service';
 import { CreateFlowersDto } from './dto/flowers.dto';
 import { ConfigService } from '@nestjs/config';
-import { EnumAppMode } from 'src/types';
+import { EnumAppMode } from '../types';
 
 @Controller('flowers')
 export class FlowersController {
